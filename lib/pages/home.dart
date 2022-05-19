@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  int _currentIndex = 0;
+  int _currentIndex = 1;
   final tabs=[
     ProfilePage(),
     Counter(),
@@ -36,7 +36,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: SizedBox(
-        height: 15.h,
+        height: 12.h,
+        width: MediaQuery.of(context).size.width,
         child: BottomNavyBar(
 //        showSelectedLabels: true,
 //        showUnselectedLabels: false,
@@ -44,9 +45,9 @@ class _HomePageState extends State<HomePage> {
           selectedIndex: _currentIndex,
           //selectedItemColor: Colors.orange,
           items: [
-            BottomNavyBarItem(icon: Icon(Icons.account_circle), title: Text("Profile"), activeColor: Colors.redAccent),
-            BottomNavyBarItem(icon: Icon(Icons.add), title: Text("Count"), activeColor: Colors.redAccent),
-            BottomNavyBarItem(icon: Icon(Icons.history), title: Text("History"), activeColor: Colors.redAccent),
+            BottomNavyBarItem(icon: Expanded(child: Icon(Icons.account_circle, size: 15.sp,)), title: Text("Profile", style: TextStyle(fontSize: 15.sp),), activeColor: Colors.redAccent),
+            BottomNavyBarItem(icon: Expanded(child: Icon(Icons.add, size: 15.sp,)), title: Text("Count"), activeColor: Colors.redAccent),
+            BottomNavyBarItem(icon: Expanded(child: Icon(Icons.history, size: 15.sp,)), title: Text("History"), activeColor: Colors.redAccent),
           ],
           onItemSelected: (index){
             setState(() {

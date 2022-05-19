@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "374444763227",
+    "project_id": "pipe-counter-e1677",
+    "storage_bucket": "pipe-counter-e1677.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:374444763227:android:0d9e5300c1dd73c423777e",
+        "android_client_info": {
+          "package_name": "com.zinbrox.pipe_counter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "374444763227-u8mj65b88f7mq1ia7e6vi13ri54qhico.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zinbrox.pipe_counter",
+            "certificate_hash": "1159808cd86abe1ea9578d24a3459a04c41b033d"
+          }
+        },
+        {
+          "client_id": "374444763227-0afvppmjlsip7s5c3fpmdku4bgommv7d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUfK6x4gENhrPIvljjvesP8BYT2ZPyEIc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "374444763227-0afvppmjlsip7s5c3fpmdku4bgommv7d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

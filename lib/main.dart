@@ -1,9 +1,13 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:pipe_counter/pages/home.dart';
+import 'package:pipe_counter/pages/log_in.dart';
 import 'package:pipe_counter/pages/profile.dart';
 import 'package:sizer/sizer.dart';
 
-void main() {
+main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -27,6 +31,7 @@ class MyApp extends StatelessWidget {
           ),
           initialRoute: '/homePage',
           routes: {
+            '/loginPage':(context) => LoginPage(),
             '/homePage':(context) => HomePage(),
             '/profilePage':(context) => ProfilePage(),
           },

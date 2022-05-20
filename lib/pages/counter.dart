@@ -109,7 +109,7 @@ class _CounterState extends State<Counter> {
 
                               //Upload to Firebase
                               var snapshot = await _firebaseStorage.ref()
-                                  .child('pipe.jpg');
+                                  .child('pipe2.jpg');
 
                               try {
                                 await snapshot.putFile(file);
@@ -216,7 +216,7 @@ class _CounterState extends State<Counter> {
                   ],
                 ),
                 const SizedBox(height: 20,),
-                Row(
+                !_loadingProcessing? Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
@@ -239,7 +239,7 @@ class _CounterState extends State<Counter> {
                       child: Icon(Icons.share, size: 15.sp, color: Colors.white,),
                     )
                   ],
-                )
+                ) : SizedBox(),
               ],
             ),
           ),

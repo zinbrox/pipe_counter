@@ -88,6 +88,7 @@ class _HistoryPageState extends State<HistoryPage> with AutomaticKeepAliveClient
                                       child: Image(
                                         image: NetworkImage(downloadURLs[index]),
                                         height: 20.h,
+                                        width: 20.h,
                                       ),
                                     ),
                                   ),

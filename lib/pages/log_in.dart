@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pipe_counter/pages/home.dart';
 import 'package:sizer/sizer.dart';
 
@@ -67,12 +68,13 @@ class LoginPage extends StatelessWidget {
                               MaterialPageRoute(builder: (context) => HomePage()));
                         } else {
                           debugPrint("Sign In Failed");
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text(
-                              result,
-                              style: TextStyle(fontSize: 16.sp),
-                            ),
-                          ));
+                          Fluttertoast.showToast(
+                              msg: result,
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.CENTER,
+//                              textColor: Colors.white,
+//                              fontSize: 16.0
+                          );
                         }
                       });
                     },

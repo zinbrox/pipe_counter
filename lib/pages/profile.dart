@@ -39,8 +39,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: Icon(Icons.arrow_back, size: 15.sp,),
                           onPressed: () {
                             debugPrint("Back Pressed");
-                            Navigator.pushReplacement(context,
-                                MaterialPageRoute(builder: (context) => HomePage()));
+                            pageController.jumpToPage(1);
                           }),
                     ),
                     SizedBox(width: 30,),
@@ -57,9 +56,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   Container(
                     margin: EdgeInsets.all(2.h),
-                    child: Image(
-                      image: NetworkImage("https://www.clipartmax.com/png/middle/17-172602_computer-icons-user-profile-male-portrait-of-a-man.png"),
-                      height: 20.h,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15.0),
+                      child: Image(
+                        image: NetworkImage("http://tabib.ae/uploads/articles/free-profile-photo-whatsapp-4_1617693292_1625640491.png"),
+                        height: 20.h,
+                      ),
                     ),
                   ),
                   SizedBox(width: 20,),
@@ -67,8 +69,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("Fname Lname", style: TextStyle(fontSize: 10.sp, color: Colors.white),),
-                      Text("email@gmail.com", style: TextStyle(fontSize: 10.sp, color: Colors.white),),
-                      Text("Mobile Number", style: TextStyle(fontSize: 10.sp, color: Colors.white),),
+                      Text("admin@gmail.com", style: TextStyle(fontSize: 10.sp, color: Colors.white),),
+                      Text("+91 98435 35345", style: TextStyle(fontSize: 10.sp, color: Colors.white),),
                     ],
                   )
                 ],
@@ -106,7 +108,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 SizedBox(
                   height: 7.h,
                   child: ListTile(
-                    leading: Icon(Icons.panorama_photosphere, size: 10.sp,),
+                    leading: Icon(Icons.public, size: 10.sp,),
                     title: Text("Visit our Website", style: TextStyle(fontSize: 10.sp),),
                   ),
                 ),

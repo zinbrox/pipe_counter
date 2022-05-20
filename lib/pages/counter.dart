@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sizer/sizer.dart';
 
 class Counter extends StatefulWidget {
@@ -14,6 +16,10 @@ class _CounterState extends State<Counter> {
   String dropdownValue = "Pipe Counter";
 
   File file = File("");
+
+  FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
+
+  bool _loadingProcessing = true;
 
   @override
   Widget build(BuildContext context) {
@@ -91,6 +97,48 @@ class _CounterState extends State<Counter> {
                             } else {
                               debugPrint("User cancelled picker");
                             }
+
+                            if(file.path!="") {
+                              Fluttertoast.showToast(
+                                msg: "Sending image to server",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.CENTER,
+//                              textColor: Colors.white,
+//                              fontSize: 16.0
+                              );
+
+                              //Upload to Firebase
+                              var snapshot = await _firebaseStorage.ref()
+                                  .child('pipe.jpg');
+
+                              try {
+                                await snapshot.putFile(file);
+                                var downloadUrl = await snapshot
+                                    .getDownloadURL();
+                                debugPrint(downloadUrl);
+                              } on Exception catch (e) {
+                                debugPrint(e.toString());
+                              }
+
+                              Fluttertoast.showToast(
+                                msg: "Image sent to server",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.CENTER,
+//                              textColor: Colors.white,
+//                              fontSize: 16.0
+                              );
+                              Fluttertoast.showToast(
+                                msg: "Image Processing",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.CENTER,
+//                              textColor: Colors.white,
+//                              fontSize: 16.0
+                              );
+                              setState(() {
+                                _loadingProcessing = false;
+                              });
+                            }
+
                           },
                           child: Container(
                             height: 20.h,
@@ -151,14 +199,23 @@ class _CounterState extends State<Counter> {
                   ],
                 ),
                 SizedBox(height: 30,),
-                ClipRRect(
-                  borderRadius: const BorderRadius.all(Radius.circular(15)),
-                  child: Image(
-                    image: FileImage(file),
-                    height: 50.h,
-                  ),
+
+                Stack(
+                  children: [
+                    ClipRRect(
+                      borderRadius: const BorderRadius.all(Radius.circular(15)),
+                      child: Image(
+                        image: FileImage(file),
+                        height: 50.h,
+                      ),
+                    ),
+                    _loadingProcessing? const Positioned.fill(
+                        child: Align(
+                            alignment: Alignment.center,
+                            child: CircularProgressIndicator(color: Colors.white,))) : SizedBox(),
+                  ],
                 ),
-                SizedBox(height: 20,),
+                const SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
